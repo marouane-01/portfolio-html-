@@ -91,12 +91,27 @@ header .logo {
   font-weight: 800;
   text-decoration: none;
   color: #0e2431;
+  display: flex;
+  align-items: center;
 }
-header .logo i {
-  font-size: 2.2rem;
+header .logo .logo-img {
+  height: 40px;
+  width: auto;
+  margin-right: 10px;
+}
+header .logo span {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #0e2431;
 }
 header .logo:hover {
   color: #fc8c05;
+}
+header .logo:hover span {
+  color: #fc8c05;
+}
+header .logo i {
+  font-size: 2.2rem;
 }
 header .navbar ul {
   list-style: none;

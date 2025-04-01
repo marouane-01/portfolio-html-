@@ -95,17 +95,18 @@ header .logo {
   align-items: center;
 }
 header .logo .logo-img {
-  height: 40px;
+  height: 45px;
   width: auto;
-  margin-right: 10px;
+  margin-right: 12px;
+  transition: transform 0.3s ease;
+}
+header .logo:hover .logo-img {
+  transform: scale(1.1);
 }
 header .logo span {
   font-size: 1.9rem;
   font-weight: 800;
   color: #0e2431;
-}
-header .logo:hover {
-  color: #fc8c05;
 }
 header .logo:hover span {
   color: #fc8c05;

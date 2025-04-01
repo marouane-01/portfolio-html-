@@ -39,18 +39,58 @@ $(document).ready(function () {
 
     // <!-- emailjs to mail contact form data -->
     $("#contact-form").submit(function (event) {
-        emailjs.init("user_TTDmetQLYgWCLzHTDgqxm");
+        event.preventDefault();
 
-        emailjs.sendForm('contact_service', 'template_contact', '#contact-form')
+        const btn = $(this).find('button');
+        const originalText = btn.html();
+
+        // Show loading message
+        Swal.fire({
+            title: 'Sending...',
+            text: 'Please wait while we send your message',
+            icon: 'info',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            willOpen: () => {
+                Swal.showLoading();
+                btn.html('Sending...').prop('disabled', true);
+            }
+        });
+
+        emailjs.init("Pmcad0Q3RjYe45-dk");
+
+        emailjs.sendForm('service_zyypsum', 'template_lq4u14s', '#contact-form')
             .then(function (response) {
                 console.log('SUCCESS!', response.status, response.text);
                 document.getElementById("contact-form").reset();
-                alert("Form Submitted Successfully");
+                btn.html('Sent!').prop('disabled', false);
+                
+                // Show success message
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your message has been sent successfully!',
+                    icon: 'success',
+                    timer: 3000,
+                    showConfirmButton: false,
+                    timerProgressBar: true
+                }).then(() => {
+                    btn.html(originalText);
+                });
             }, function (error) {
                 console.log('FAILED...', error);
-                alert("Form Submission Failed! Try Again");
+                btn.html('Try Again').prop('disabled', false);
+                
+                // Show error message
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Failed to send message. Please try again.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#ff7f50'
+                }).then(() => {
+                    btn.html(originalText);
+                });
             });
-        event.preventDefault();
     });
     // <!-- emailjs to mail contact form data -->
 
